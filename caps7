@@ -1,0 +1,46 @@
+#include <stdio.h>
+
+int main() {
+    char travelClass;
+    double baggageWeight, baseFare, excessFee, totalFare;
+    int allowance;
+
+    printf("Enter travel class (E-conomy / B-usiness): ");
+    scanf(" %c", &travelClass);
+
+    if (travelClass == 'E' || travelClass == 'e') {
+        baseFare = 2500.00;
+        allowance = 20;
+    } else if (travelClass == 'B' || travelClass == 'b') {
+        baseFare = 6500.00;
+        allowance = 40;
+    } else {
+        printf("Error: Invalid travel class. Please enter E or B.\n");
+        return 0;
+    }
+
+    printf("Enter baggage weight (kg): ");
+    scanf("%lf", &baggageWeight);
+
+    if (baggageWeight > allowance) {
+        excessFee = (baggageWeight - allowance) * 150.00;
+    } else {
+        excessFee = 0.00;
+    }
+
+    totalFare = baseFare + excessFee;
+
+    printf("\n----- BOARDING SUMMARY -----\n");
+    if (travelClass == 'E' || travelClass == 'e') {
+        printf("Travel Class: Economy\n");
+    } else {
+        printf("Travel Class: Business\n");
+    }
+    printf("Base Fare: PHP %.2f\n", baseFare);
+    printf("Baggage Weight: %.1f kg (Allowance: %d kg)\n", baggageWeight, allowance);
+    printf("Excess Baggage Fee: PHP %.2f\n", excessFee);
+    printf("Total Fare: PHP %.2f\n", totalFare);
+    printf("----------------------------\n");
+
+    return 0;
+}
